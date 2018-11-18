@@ -1,6 +1,6 @@
 # Messenger
 
-[![CircleCI](https://circleci.com/bb/gztomas/luthor/tree/master.svg?style=svg&circle-token=33f5e2f1b625664f8025646b9cb2f01cac7d926e)](https://circleci.com/gh/gztomas/messenger/tree/master)
+[![CircleCI](https://circleci.com/gh/gztomas/messenger.svg?style=svg)](https://circleci.com/gh/gztomas/messenger)
 
 Messenger APP frontend POC
 
