@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Splash should render properly 1`] = `
+<splash__Container>
+  <Card
+    cover={<ForwardRef />}
+    hoverable={true}
+    style={
+      Object {
+        "width": 240,
+      }
+    }
+  >
+    <Component
+      description="This is just the boilerplate"
+      title="Messenger App"
+    />
+  </Card>
+</splash__Container>
+`;
