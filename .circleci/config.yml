@@ -1,0 +1,60 @@
+version: 2
+jobs:
+  build:
+    branches:
+      ignore:
+        - gh-pages
+
+    docker:
+      - image: circleci/node:8.11.4
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: yarn
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+      - run: yarn lint
+
+      - run: yarn test
+
+      - run: yarn build
+
+      - deploy:
+          name: Deploy
+          command: |
+            if [ $CIRCLE_BRANCH == master ]; then
+              git config --global user.email "circleci@users.noreply.github.com"
+              git config --global user.name "CircleCI"
+              git clone $CIRCLE_REPOSITORY_URL deploy
+
+              cd deploy
+              git checkout gh-pages || git checkout --orphan gh-pages
+              git rm -rf .
+              cd ..
+
+              yarn build
+              yarn export
+
+              cp -a out/. deploy/.
+
+              mkdir -p deploy/.circleci && cp -a .circleci/. deploy/.circleci/.
+              cd deploy
+
+              git add -A
+              git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+
+              git push origin gh-pages
+            fi
