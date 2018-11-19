@@ -7,7 +7,8 @@
     "dev": "next src",
     "build": "next build src",
     "start": "next start src",
-    "lint": "eslint .",
+    "export": "next export src -o out",
+    "lint": "eslint src",
     "test": "jest src"
   },
   "author": "gztomas",
