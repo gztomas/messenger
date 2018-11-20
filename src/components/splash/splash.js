@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Card } from 'antd';
 // @ts-ignore
-import Logo from '../static/logo.svg';
+import Logo from '../../static/logo.svg';
 
 const { Meta } = Card;
 

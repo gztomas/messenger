@@ -1,10 +1,10 @@
 import React from 'react';
 import MainLayout from '../layouts/main';
-import Splash from '../components/splash';
+import Chat from '../layouts/chat';
 
 const Index = () => (
   <MainLayout>
-    <Splash />
+    <Chat />
   </MainLayout>
 );
 
