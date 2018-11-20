@@ -9,7 +9,7 @@ import MessagesList from '../components/messages-list';
 const { Header, Footer, Sider, Content } = Layout;
 
 const Chat = () => (
-  <Layout hasSider style={{ height: '100vh' }}>
+  <Layout hasSider>
     <Sider
       style={{ background: '#262A2F', paddingTop: '10px' }}
       width="250"
