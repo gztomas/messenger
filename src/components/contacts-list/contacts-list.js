@@ -21,7 +21,14 @@ const ContactsList = ({ contacts }) => (
 );
 
 ContactsList.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      picture: PropTypes.string,
+      name: PropTypes.string,
+      lastMessage: PropTypes.shape({}),
+      isSelected: PropTypes.bool,
+    }),
+  ).isRequired,
 };
 
 export default ContactsList;
