@@ -1,24 +1,40 @@
 import { createAction } from 'redux-actions';
-import { send, listen } from './messages-service';
+import * as messagesService from './messages-service';
+import * as channelsService from './channels-service';
 
 export const addMessage = createAction('ADD_MESSAGE', message => ({ message }));
 
-export const startTyping = createAction('START_TYPING');
-
-export const endTyping = createAction('END_TYPING');
+export const channelUpdate = createAction(
+  'CHANNEL_UPDATE',
+  (channel, channelId) => ({
+    channel,
+    channelId,
+  }),
+);
 
 export const sendMessage = body => (dispatch, getState) => {
-  const { me, activeChannel } = getState();
+  const { me, activeChannelId } = getState();
 
   const message = {
-    to: activeChannel.id,
+    to: activeChannelId,
     from: me.id,
     sentTime: new Date(),
     body,
   };
-  send(message);
+  messagesService.send(message);
+};
+
+export const updateChannel = channel => () => {
+  channelsService.update(channel.id, channel);
 };
 
 export const listenForMessages = recipientId => dispatch => {
-  listen(recipientId, message => dispatch(addMessage(message)));
+  messagesService.listen(recipientId, message => dispatch(addMessage(message)));
+};
+
+export const listenForChannel = channelId => dispatch => {
+  channelsService.listen(
+    channelId,
+    channel => channel && dispatch(channelUpdate(channel, channelId)),
+  );
 };

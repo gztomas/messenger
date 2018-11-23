@@ -4,10 +4,10 @@ import { Layout } from 'antd';
 import { compose, lifecycle } from 'recompose';
 import { connect } from 'react-redux';
 import MessageBuilder from '../components/message-builder';
-import ContactsList from '../components/contacts-list';
+import ChannelsList from '../components/channels-list';
 import ContactInfo from '../components/contact-info';
 import MessagesList from '../components/messages-list';
-import { listenForMessages } from '../actions';
+import { listenForMessages, listenForChannel } from '../actions';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -19,7 +19,7 @@ const Chat = () => (
       breakpoint="md"
       collapsedWidth="0"
     >
-      <ContactsList />
+      <ChannelsList />
     </Sider>
     <Layout>
       <Header
@@ -50,7 +50,9 @@ const Chat = () => (
 
 const mapDispatchToProps = {
   listenForMessages: () => (dispatch, getState) =>
-    dispatch(listenForMessages(getState().activeChannel.id)),
+    dispatch(listenForMessages(getState().activeChannelId)),
+  listenForChannel: () => (dispatch, getState) =>
+    dispatch(listenForChannel(getState().activeChannelId)),
 };
 
 export default compose(
@@ -61,6 +63,7 @@ export default compose(
   lifecycle({
     componentDidMount() {
       this.props.listenForMessages();
+      this.props.listenForChannel();
     },
   }),
 )(Chat);

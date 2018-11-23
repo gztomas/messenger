@@ -9,9 +9,9 @@ export const StyledInfo = styled.div`
   margin-left: 10px;
 `;
 
-export const StyledListItem = styled(({ isSelected, children, ...rest }) => (
+export const StyledListItem = styled(({ isActive, children, ...rest }) => (
   <List.Item {...rest}>{children}</List.Item>
 ))`
   padding: 15px 10px;
-  ${props => (props.isSelected ? 'border-left: 3px solid #3485f7;' : '')}
+  ${props => (props.isActive ? 'border-left: 3px solid #3485f7;' : '')}
 `;

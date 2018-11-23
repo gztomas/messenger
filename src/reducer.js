@@ -2,7 +2,7 @@
 import { handleActions } from 'redux-actions';
 import produce from 'immer';
 
-import { INITIAL_STATE } from './initial-state';
+import { LAURA_INITIAL_STATE } from './initial-state';
 
 const reducer = handleActions(
   {
@@ -13,20 +13,12 @@ const reducer = handleActions(
         }
         draft.messages[message.to].push(message);
       }),
-    START_TYPING: state =>
+    CHANNEL_UPDATE: (state, { payload: { channel, channelId } }) =>
       produce(state, draft => {
-        draft.contacts.find(
-          contact => contact.id === state.activeChannel.contactId,
-        ).isTyping = true;
-      }),
-    END_TYPING: state =>
-      produce(state, draft => {
-        draft.contacts.find(
-          contact => contact.id === state.activeChannel.contactId,
-        ).isTyping = false;
+        Object.assign(draft.channels[channelId], channel);
       }),
   },
-  INITIAL_STATE,
+  LAURA_INITIAL_STATE,
 );
 
 export default reducer;
