@@ -46,6 +46,7 @@ const MessagesList = ({ messages, isTyping, myself }) => {
 MessagesList.propTypes = {
   messages: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   isTyping: PropTypes.bool.isRequired,
+  myself: PropTypes.string.isRequired,
 };
 
 export default MessagesList;
