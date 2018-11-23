@@ -1,10 +1,13 @@
 import React from 'react';
 import { Layout } from 'antd';
 
+import { compose, lifecycle } from 'recompose';
+import { connect } from 'react-redux';
 import MessageBuilder from '../components/message-builder';
 import ContactsList from '../components/contacts-list';
 import ContactInfo from '../components/contact-info';
 import MessagesList from '../components/messages-list';
+import { listenForMessages } from '../actions';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -45,4 +48,19 @@ const Chat = () => (
   </Layout>
 );
 
-export default Chat;
+const mapDispatchToProps = {
+  listenForMessages: () => (dispatch, getState) =>
+    dispatch(listenForMessages(getState().activeChannel.id)),
+};
+
+export default compose(
+  connect(
+    null,
+    mapDispatchToProps,
+  ),
+  lifecycle({
+    componentDidMount() {
+      this.props.listenForMessages();
+    },
+  }),
+)(Chat);

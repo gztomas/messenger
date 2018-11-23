@@ -1,13 +1,14 @@
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 import ContactsList from './contacts-list';
 
-const mapStateToProps = ({ contacts, messages, selectedContactId }) => ({
+const mapStateToProps = ({ contacts, messages, activeChannel }) => ({
   contacts: contacts.map(contact => {
     const result = {
       ...contact,
-      lastMessage: messages[selectedContactId][0] || {},
+      lastMessage: get(messages, `${activeChannel.contactId}.0`, {}),
     };
-    if (contact.id === selectedContactId) {
+    if (contact.id === activeChannel.contactId) {
       result.isSelected = true;
     }
     return result;

@@ -6,11 +6,10 @@ import { StyledContainer } from './styled';
 import TypeSpinner from '../type-spinner';
 
 const MESSAGE_BEING_TYPED = {
-  inbox: true,
   body: <TypeSpinner />,
 };
 
-const MessagesList = ({ messages, isTyping }) => {
+const MessagesList = ({ messages, isTyping, myself }) => {
   const allMessages = [...messages];
   if (isTyping) {
     allMessages.push(MESSAGE_BEING_TYPED);
@@ -26,7 +25,7 @@ const MessagesList = ({ messages, isTyping }) => {
           <List.Item>
             <Card
               style={{
-                ...(!message.inbox && {
+                ...(message.from === myself && {
                   marginLeft: 'auto',
                   background: '#3485F7',
                   color: 'white',

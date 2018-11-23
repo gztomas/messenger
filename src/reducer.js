@@ -6,20 +6,23 @@ import { INITIAL_STATE } from './initial-state';
 
 const reducer = handleActions(
   {
-    SEND_MESSAGE: (state, { payload: { message } }) =>
+    ADD_MESSAGE: (state, { payload: { message } }) =>
       produce(state, draft => {
-        draft.messages[state.selectedContactId].push(message);
+        if (!(message.to in draft.messages)) {
+          draft.messages[message.to] = [];
+        }
+        draft.messages[message.to].push(message);
       }),
     START_TYPING: state =>
       produce(state, draft => {
         draft.contacts.find(
-          contact => contact.id === state.selectedContactId,
+          contact => contact.id === state.activeChannel.contactId,
         ).isTyping = true;
       }),
     END_TYPING: state =>
       produce(state, draft => {
         draft.contacts.find(
-          contact => contact.id === state.selectedContactId,
+          contact => contact.id === state.activeChannel.contactId,
         ).isTyping = false;
       }),
   },
