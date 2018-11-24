@@ -28,10 +28,12 @@ class MessageBuilder extends React.Component {
 
     return (
       <StyledInput
-        as={Input}
+        as={Input.TextArea}
         placeholder="Type a message"
         autoFocus
         onKeyDown={onKeyDown}
+        rows="1"
+        autosize={{ minRows: 1, maxRows: 5 }}
       />
     );
   }

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import initializeStore from '../store';
 import MainLayout from '../layouts/main';
-import Chat from '../layouts/chat';
+import Chat from '../components/chat';
 import { LAURA_INITIAL_STATE, ROB_INITIAL_STATE } from '../initial-state';
 
 const leftStore = initializeStore(LAURA_INITIAL_STATE);

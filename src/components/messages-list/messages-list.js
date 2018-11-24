@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { List, Card } from 'antd';
-import { StyledContainer } from './styled';
+import { List } from 'antd';
+import { StyledContainer, Message, MessageContent, OwnMessage } from './styled';
 
 import TypeSpinner from '../type-spinner';
 
@@ -26,19 +26,15 @@ const MessagesList = ({ messages, isTyping, myself }) => {
         }}
         renderItem={message => (
           <List.Item>
-            <Card
-              style={{
-                ...(message.from === myself && {
-                  marginLeft: 'auto',
-                  background: '#3485F7',
-                  color: 'white',
-                }),
-                borderRadius: '20px',
-              }}
-              bodyStyle={{ padding: '15px' }}
-            >
-              {message.body}
-            </Card>
+            {message.from === myself ? (
+              <OwnMessage>
+                <MessageContent>{message.body}</MessageContent>
+              </OwnMessage>
+            ) : (
+              <Message>
+                <MessageContent>{message.body}</MessageContent>
+              </Message>
+            )}
           </List.Item>
         )}
       />

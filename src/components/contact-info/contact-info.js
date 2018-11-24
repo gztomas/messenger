@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Avatar } from 'antd';
-import { StyledInfo, StyledContainer } from './styled';
+import { StyledDetails, StyledContainer } from './styled';
 
 const ContactInfo = ({ picture, name, status }) => (
   <StyledContainer>
     <Avatar size="large" src={picture} />
-    <StyledInfo>
+    <StyledDetails>
       <h4>{name}</h4>
       <span>{status}</span>
-    </StyledInfo>
+    </StyledDetails>
   </StyledContainer>
 );
 

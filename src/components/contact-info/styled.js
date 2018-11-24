@@ -5,7 +5,7 @@ export const StyledContainer = styled.div`
   align-items: center;
 `;
 
-export const StyledInfo = styled.div`
+export const StyledDetails = styled.div`
   display: flex;
   line-height: 16px;
   flex-direction: column;

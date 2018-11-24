@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Avatar, List } from 'antd';
-import { StyledListItem, StyledInfo } from './styled';
+import {
+  StyledListItem,
+  StyledDetails,
+  StyledPicture,
+  OneLiner,
+} from './styled';
 
 const ChannelsList = ({ channels }) => (
   <List
@@ -10,13 +15,13 @@ const ChannelsList = ({ channels }) => (
     dataSource={channels}
     renderItem={({ picture, name, lastMessage, isActive }) => (
       <StyledListItem isActive={isActive}>
-        <Avatar size="large" src={picture} />
-        <StyledInfo>
+        <StyledPicture as={Avatar} size="large" src={picture} />
+        <StyledDetails>
           <h4 style={{ color: 'white' }}>{name}</h4>
-          <span style={{ color: 'grey' }}>
+          <OneLiner style={{ color: 'grey' }}>
             {lastMessage && lastMessage.body}
-          </span>
-        </StyledInfo>
+          </OneLiner>
+        </StyledDetails>
       </StyledListItem>
     )}
   />
