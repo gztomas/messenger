@@ -4,36 +4,67 @@ import { Input } from 'antd';
 import { debounce } from 'lodash';
 import { StyledInput } from './styled';
 
+const TYPING_DEBOUNCE_TIME = 2000;
+const MESSAGE_INPUT_PLACEHOLDER = 'Type a message';
+const ENTER_KEY_CODE = 13;
+
 class MessageBuilder extends React.Component {
-  componentDidMount() {
-    const { onEndTyping } = this.props;
-    this.debouncedOnEndTyping = debounce(onEndTyping, 2000);
+  constructor(props) {
+    super(props);
+
+    this.state = { message: '' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-  render() {
-    const { onSendMessage, onStartTyping, onEndTyping, isTyping } = this.props;
-    const onKeyDown = ev => {
-      if (!isTyping && ev.target.value) {
+  componentDidMount() {
+    const { onEndTyping } = this.props;
+
+    this.debouncedOnEndTyping = debounce(onEndTyping, TYPING_DEBOUNCE_TIME);
+  }
+
+  handleChange(event) {
+    const { onStartTyping, isTyping } = this.props;
+    const { message } = this.state;
+    const newMessage = event.target.value;
+
+    if (newMessage.trim().length || message) {
+      this.setState({ message: newMessage });
+      if (!isTyping && newMessage) {
         onStartTyping();
       }
       this.debouncedOnEndTyping();
-      if (ev.key === 'Enter' && ev.target.value) {
+    }
+  }
+
+  handleKeyPress(event) {
+    const { onEndTyping, onSendMessage } = this.props;
+    const { message } = this.state;
+
+    if (event.which === ENTER_KEY_CODE && !event.shiftKey) {
+      if (message) {
         onEndTyping();
-        onSendMessage(ev.target.value);
-        // eslint-disable-next-line no-param-reassign
-        ev.target.value = '';
-        ev.preventDefault();
+        onSendMessage(message.trim());
+        this.setState({ message: '' });
       }
-    };
+      event.preventDefault();
+    }
+  }
+
+  render() {
+    const { message } = this.state;
 
     return (
       <StyledInput
         as={Input.TextArea}
-        placeholder="Type a message"
-        autoFocus
-        onKeyDown={onKeyDown}
-        rows="1"
+        type="submit"
+        placeholder={MESSAGE_INPUT_PLACEHOLDER}
+        rows={1}
         autosize={{ minRows: 1, maxRows: 5 }}
+        autoFocus
+        value={message}
+        onChange={this.handleChange}
+        onKeyPress={this.handleKeyPress}
       />
     );
   }
