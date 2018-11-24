@@ -21,6 +21,9 @@ const MessagesList = ({ messages, isTyping, myself }) => {
         itemLayout="horizontal"
         dataSource={allMessages}
         split={false}
+        locale={{
+          emptyText: '',
+        }}
         renderItem={message => (
           <List.Item>
             <Card
