@@ -7,8 +7,10 @@ import MainLayout from '../layouts/main';
 import Chat from '../components/chat';
 import { fetchInitialState } from '../actions';
 
-const leftStore = initializeStore(fetchInitialState('laura-id'));
-const rightStore = initializeStore(fetchInitialState('rob-id'));
+// For demo purposes, the app has two stores, one for Laura, and other for Rob
+// For a real world use case, there will be a single store
+const leftStore = initializeStore(fetchInitialState('laura-id'), 'Laura Store');
+const rightStore = initializeStore(fetchInitialState('rob-id'), 'Rob Store');
 
 const Screen = styled.div`
   margin: 10px;

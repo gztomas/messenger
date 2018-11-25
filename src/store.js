@@ -4,11 +4,13 @@ import thunkMiddleware from 'redux-thunk';
 
 import reducer from './reducer';
 
-const initializeStore = initialState =>
-  createStore(
+const initializeStore = (initialState, name) => {
+  const composeEnhancers = composeWithDevTools({ name });
+  return createStore(
     reducer,
     initialState,
-    composeWithDevTools(applyMiddleware(thunkMiddleware)),
+    composeEnhancers(applyMiddleware(thunkMiddleware)),
   );
+};
 
 export default initializeStore;
