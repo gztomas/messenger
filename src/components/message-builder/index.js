@@ -2,29 +2,29 @@ import { connect } from 'react-redux';
 import MessageBuilder from './message-builder';
 import { sendMessage, updateChannel } from '../../actions';
 
-const mapStateToProps = ({ channels, activeChannelId, me }) => ({
-  isTyping: channels[activeChannelId].typing.some(id => id !== me.id),
-});
-
 const mapDispatchToProps = {
   onSendMessage: sendMessage,
-  onStartTyping: () => (dispatch, getState) =>
+  onStartTyping: () => (dispatch, getState) => {
+    const { activeChannelId, channels, me } = getState();
     dispatch(
       updateChannel({
-        id: getState().activeChannelId,
-        typing: [getState().me.id],
+        id: activeChannelId,
+        typing: [...channels[activeChannelId].typing, me.id],
       }),
-    ),
-  onEndTyping: () => (dispatch, getState) =>
+    );
+  },
+  onEndTyping: () => (dispatch, getState) => {
+    const { activeChannelId, channels, me } = getState();
     dispatch(
       updateChannel({
-        id: getState().activeChannelId,
-        typing: [],
+        id: activeChannelId,
+        typing: channels[activeChannelId].typing.filter(id => id !== me.id),
       }),
-    ),
+    );
+  },
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(MessageBuilder);

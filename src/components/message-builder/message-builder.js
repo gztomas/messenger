@@ -12,25 +12,32 @@ class MessageBuilder extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { message: '' };
+    this.state = { message: '', isTyping: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleEndTyping = this.handleEndTyping.bind(this);
+
+    this.debouncedOnEndTyping = debounce(
+      this.handleEndTyping,
+      TYPING_DEBOUNCE_TIME,
+    );
   }
 
-  componentDidMount() {
+  handleEndTyping() {
     const { onEndTyping } = this.props;
-
-    this.debouncedOnEndTyping = debounce(onEndTyping, TYPING_DEBOUNCE_TIME);
+    this.setState({ isTyping: false });
+    onEndTyping();
   }
 
   handleChange(event) {
-    const { onStartTyping, isTyping } = this.props;
-    const { message } = this.state;
+    const { onStartTyping } = this.props;
+    const { message, isTyping } = this.state;
     const newMessage = event.target.value;
 
     if (newMessage.trim().length || message) {
       this.setState({ message: newMessage });
       if (!isTyping && newMessage) {
+        this.setState({ isTyping: true });
         onStartTyping();
       }
       this.debouncedOnEndTyping();
@@ -38,12 +45,12 @@ class MessageBuilder extends React.Component {
   }
 
   handleKeyPress(event) {
-    const { onEndTyping, onSendMessage } = this.props;
+    const { onSendMessage } = this.props;
     const { message } = this.state;
 
     if (event.which === ENTER_KEY_CODE && !event.shiftKey) {
       if (message) {
-        onEndTyping();
+        this.handleEndTyping();
         onSendMessage(message.trim());
         this.setState({ message: '' });
       }
@@ -74,7 +81,6 @@ MessageBuilder.propTypes = {
   onSendMessage: PropTypes.func.isRequired,
   onStartTyping: PropTypes.func.isRequired,
   onEndTyping: PropTypes.func.isRequired,
-  isTyping: PropTypes.bool.isRequired,
 };
 
 export default MessageBuilder;
