@@ -19,7 +19,8 @@ export const StyledContent = styled(Content)`
   padding: 0 50px;
   overflow: scroll;
   background: linear-gradient(to right, #f4f8fa, #e4e8ea);
-  flex-direction: column-reverse;
+  flex-direction: column;
+  justify-content: flex-end;
 `;
 
 export const StyledSider = styled(Sider)`

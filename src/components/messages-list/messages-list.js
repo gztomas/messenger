@@ -4,6 +4,7 @@ import { List } from 'antd';
 import { StyledContainer, Message, MessageContent, OwnMessage } from './styled';
 
 import TypeSpinner from '../type-spinner';
+import AutoScroller from '../auto-scroller/auto-scroller';
 
 const MESSAGE_BEING_TYPED = {
   body: <TypeSpinner />,
@@ -16,29 +17,31 @@ const MessagesList = ({ messages, isTyping, myself }) => {
   }
 
   return (
-    <StyledContainer>
-      <List
-        itemLayout="horizontal"
-        dataSource={allMessages}
-        split={false}
-        locale={{
-          emptyText: '',
-        }}
-        renderItem={message => (
-          <List.Item>
-            {message.from === myself ? (
-              <OwnMessage>
-                <MessageContent>{message.body}</MessageContent>
-              </OwnMessage>
-            ) : (
-              <Message>
-                <MessageContent>{message.body}</MessageContent>
-              </Message>
-            )}
-          </List.Item>
-        )}
-      />
-    </StyledContainer>
+    <AutoScroller>
+      <StyledContainer>
+        <List
+          itemLayout="horizontal"
+          dataSource={allMessages}
+          split={false}
+          locale={{
+            emptyText: '',
+          }}
+          renderItem={message => (
+            <List.Item>
+              {message.from === myself ? (
+                <OwnMessage>
+                  <MessageContent>{message.body}</MessageContent>
+                </OwnMessage>
+              ) : (
+                <Message>
+                  <MessageContent>{message.body}</MessageContent>
+                </Message>
+              )}
+            </List.Item>
+          )}
+        />
+      </StyledContainer>
+    </AutoScroller>
   );
 };
 
