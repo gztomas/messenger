@@ -2,6 +2,8 @@ import { connect } from 'react-redux';
 import { map, last } from 'lodash';
 import ChannelsList from './channels-list';
 
+import { setActiveChannel } from '../../actions';
+
 const mapStateToProps = ({
   me,
   contacts,
@@ -13,8 +15,8 @@ const mapStateToProps = ({
     const contact =
       contacts[channel.members.find(contactId => contactId !== me.id)];
     const result = {
-      ...channel,
       ...contact,
+      ...channel,
       lastMessage: last(messages[channelId]),
     };
     if (channelId === activeChannelId) {
@@ -24,4 +26,11 @@ const mapStateToProps = ({
   }),
 });
 
-export default connect(mapStateToProps)(ChannelsList);
+const mapDispatchToProps = {
+  onSetActiveChannel: setActiveChannel,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ChannelsList);

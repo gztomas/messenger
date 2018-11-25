@@ -23,8 +23,10 @@ export const StyledDetails = styled.div`
 export const StyledListItem = styled(({ isActive, children, ...rest }) => (
   <List.Item {...rest}>{children}</List.Item>
 ))`
+  cursor: pointer;
   padding: 15px 10px;
-  ${props => (props.isActive ? 'border-left: 3px solid #3485f7;' : '')}
+  border-left: 3px solid transparent;
+  ${props => (props.isActive ? 'border-left-color: #3485f7;' : '')}
 
   .ant-list-item-content {
     overflow: hidden;

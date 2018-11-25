@@ -5,10 +5,10 @@ import styled from 'styled-components';
 import initializeStore from '../store';
 import MainLayout from '../layouts/main';
 import Chat from '../components/chat';
-import { LAURA_INITIAL_STATE, ROB_INITIAL_STATE } from '../initial-state';
+import { fetchInitialState } from '../actions';
 
-const leftStore = initializeStore(LAURA_INITIAL_STATE);
-const rightStore = initializeStore(ROB_INITIAL_STATE);
+const leftStore = initializeStore(fetchInitialState('laura-id'));
+const rightStore = initializeStore(fetchInitialState('rob-id'));
 
 const Screen = styled.div`
   margin: 10px;

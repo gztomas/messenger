@@ -8,13 +8,16 @@ import {
   OneLiner,
 } from './styled';
 
-const ChannelsList = ({ channels }) => (
+const ChannelsList = ({ channels, onSetActiveChannel }) => (
   <List
     split={false}
     itemLayout="horizontal"
     dataSource={channels}
-    renderItem={({ picture, name, lastMessage, isActive }) => (
-      <StyledListItem isActive={isActive}>
+    renderItem={({ id, picture, name, lastMessage, isActive }) => (
+      <StyledListItem
+        isActive={isActive}
+        onClick={() => onSetActiveChannel(id)}
+      >
         <StyledPicture as={Avatar} size="large" src={picture} />
         <StyledDetails>
           <h4 style={{ color: 'white' }}>{name}</h4>
@@ -36,6 +39,7 @@ ChannelsList.propTypes = {
       isActive: PropTypes.bool,
     }),
   ).isRequired,
+  onSetActiveChannel: PropTypes.func.isRequired,
 };
 
 export default ChannelsList;

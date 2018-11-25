@@ -13,6 +13,6 @@ export const send = message => {
   getRecipient(message.to).next(message);
 };
 
-export const listen = (recipientId, callback) => {
-  getRecipient(recipientId).subscribe(callback);
+export const listen = (recipientsIds, callback) => {
+  recipientsIds.forEach(id => getRecipient(id).subscribe(callback));
 };

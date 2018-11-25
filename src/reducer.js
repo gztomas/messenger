@@ -1,8 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { handleActions } from 'redux-actions';
 import produce from 'immer';
+import { fetchInitialState } from './actions';
 
-import { LAURA_INITIAL_STATE } from './initial-state';
+const initialState = fetchInitialState('laura-id');
 
 const reducer = handleActions(
   {
@@ -13,12 +14,16 @@ const reducer = handleActions(
         }
         draft.messages[message.to].push(message);
       }),
-    CHANNEL_UPDATE: (state, { payload: { channel, channelId } }) =>
+    SET_ACTIVE_CHANNEL: (state, { payload: { channelId } }) =>
       produce(state, draft => {
-        Object.assign(draft.channels[channelId], channel);
+        draft.activeChannelId = channelId;
+      }),
+    CHANNEL_UPDATE: (state, { payload: { channel } }) =>
+      produce(state, draft => {
+        Object.assign(draft.channels[channel.id], channel);
       }),
   },
-  LAURA_INITIAL_STATE,
+  initialState,
 );
 
 export default reducer;

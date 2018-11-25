@@ -1,0 +1,17 @@
+{
+  "laura-rob-channel-id": {
+    "id": "laura-rob-channel-id",
+    "members": ["rob-id", "laura-id"],
+    "typing": []
+  },
+  "laura-tom-channel-id": {
+    "id": "laura-tom-channel-id",
+    "members": ["tom-id", "laura-id"],
+    "typing": []
+  },
+  "tom-rob-channel-id": {
+    "id": "tom-rob-channel-id",
+    "members": ["rob-id", "tom-id"],
+    "typing": []
+  }
+}

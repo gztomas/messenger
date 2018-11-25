@@ -1,16 +1,19 @@
 import { createAction } from 'redux-actions';
-import * as messagesService from './messages-service';
-import * as channelsService from './channels-service';
+import { keyBy } from 'lodash';
+import * as messagesService from './server-mock/messages';
+import * as channelsService from './server-mock/channels';
+import * as usersService from './server-mock/users';
 
 export const addMessage = createAction('ADD_MESSAGE', message => ({ message }));
 
-export const channelUpdate = createAction(
-  'CHANNEL_UPDATE',
-  (channel, channelId) => ({
-    channel,
-    channelId,
-  }),
+export const setActiveChannel = createAction(
+  'SET_ACTIVE_CHANNEL',
+  channelId => ({ channelId }),
 );
+
+export const channelUpdate = createAction('CHANNEL_UPDATE', channel => ({
+  channel,
+}));
 
 export const sendMessage = body => (dispatch, getState) => {
   const { me, activeChannelId } = getState();
@@ -25,16 +28,27 @@ export const sendMessage = body => (dispatch, getState) => {
 };
 
 export const updateChannel = channel => () => {
-  channelsService.update(channel.id, channel);
+  channelsService.update(channel);
 };
 
-export const listenForMessages = recipientId => dispatch => {
-  messagesService.listen(recipientId, message => dispatch(addMessage(message)));
+export const listenForMessages = () => (dispatch, getState) => {
+  const { channels } = getState().me;
+  messagesService.listen(channels, message => dispatch(addMessage(message)));
 };
 
-export const listenForChannel = channelId => dispatch => {
-  channelsService.listen(
-    channelId,
-    channel => channel && dispatch(channelUpdate(channel, channelId)),
-  );
+export const listenForChannels = () => (dispatch, getState) => {
+  const { channels } = getState().me;
+  channelsService.listen(channels, channel => dispatch(channelUpdate(channel)));
+};
+
+export const fetchInitialState = userId => {
+  const me = usersService.get(userId);
+  const { contacts, channels } = me;
+  return {
+    contacts: keyBy(contacts.map(usersService.get), 'id'),
+    channels: keyBy(channels.map(channelsService.get), 'id'),
+    activeChannelId: channels[0],
+    messages: {},
+    me,
+  };
 };

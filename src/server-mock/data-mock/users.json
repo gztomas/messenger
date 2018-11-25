@@ -1,0 +1,26 @@
+{
+  "rob-id": {
+    "id": "rob-id",
+    "name": "Rob",
+    "status": "online",
+    "picture": "static/rob.jpg",
+    "contacts": ["laura-id", "tom-id"],
+    "channels": ["laura-rob-channel-id", "tom-rob-channel-id"]
+  },
+  "laura-id": {
+    "id": "laura-id",
+    "name": "Laura",
+    "status": "online",
+    "picture": "static/laura.jpg",
+    "contacts": ["rob-id", "tom-id"],
+    "channels": ["laura-rob-channel-id", "laura-tom-channel-id"]
+  },
+  "tom-id": {
+    "id": "tom-id",
+    "name": "Tom",
+    "status": "online",
+    "picture": "static/tom.jpeg",
+    "contacts": ["laura-id", "rob-id"],
+    "channels": ["laura-tom-channel-id", "tom-rob-channel-id"]
+  }
+}
