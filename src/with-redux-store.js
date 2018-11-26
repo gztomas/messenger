@@ -2,6 +2,7 @@ import React from 'react';
 import initializeStore from './store';
 
 // Boilerplate code for adding Redux support to Next.js
+// https://github.com/zeit/next.js/tree/canary/examples/with-redux
 
 const isServer = typeof window === 'undefined';
 const NEXT_REDUX_STORE = '__NEXT_REDUX_STORE__';

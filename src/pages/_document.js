@@ -4,6 +4,7 @@ import { ServerStyleSheet } from 'styled-components';
 
 /**
  * Default Next.js document override for supporting Styled Components
+ * https://github.com/zeit/next.js/tree/canary/examples/with-styled-components
  */
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
