@@ -5,6 +5,9 @@ import { fetchInitialState } from './actions';
 
 const initialState = fetchInitialState('laura-id');
 
+// Using immer here, which produces a draft state which can be mutated
+// without affecting the original state
+
 const reducer = handleActions(
   {
     ADD_MESSAGE: (state, { payload: { message } }) =>

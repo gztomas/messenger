@@ -8,7 +8,8 @@ import Chat from '../components/chat';
 import { fetchInitialState } from '../actions';
 
 // For demo purposes, the app has two stores, one for Laura, and other for Rob
-// For a real world use case, there will be a single store
+// For a real world use case, these stores won't be needed, as the application
+// already has a global store defined
 const leftStore = initializeStore(fetchInitialState('laura-id'), 'Laura Store');
 const rightStore = initializeStore(fetchInitialState('rob-id'), 'Rob Store');
 
@@ -19,6 +20,9 @@ const Screen = styled.div`
   box-shadow: 8px 8px 5px -5px #bbb;
 `;
 
+/**
+ * Split screen page, not for the real world
+ */
 const DemoPage = () => (
   <MainLayout>
     <Provider store={leftStore}>

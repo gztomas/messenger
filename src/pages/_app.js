@@ -3,6 +3,9 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import withReduxStore from '../with-redux-store';
 
+/**
+ * Default Next.js App override for supporting Redux
+ */
 class MyApp extends App {
   render() {
     const { Component, pageProps, reduxStore } = this.props;

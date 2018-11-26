@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/gztomas/messenger.svg?style=svg)](https://circleci.com/gh/gztomas/messenger)
 
-This is a POC for the front-end side of a simple messenger app.
+This is a POC for simple messenger font-end app.
 
 ![Demo Animation](demo.gif)
 
@@ -38,7 +38,7 @@ yarn build
 yarn start
 ```
 
-Then just opens your browser at http://localhost:3000
+Then just open your browser at http://localhost:3000
 
 ## Development
 
@@ -47,3 +47,7 @@ A webpack-based dev environment which supports hot module replacement can be sta
 ```sh
 yarn dev
 ```
+
+### Tests
+
+Tests are missing for the most cases, but you can check the [contact info component](https://github.com/gztomas/messenger/tree/master/src/components/contact-info) for an example of a tested component.

@@ -35,7 +35,9 @@ ChannelsList.propTypes = {
     PropTypes.shape({
       picture: PropTypes.string,
       name: PropTypes.string,
-      lastMessage: PropTypes.shape({}),
+      lastMessage: PropTypes.shape({
+        body: PropTypes.string,
+      }),
       isActive: PropTypes.bool,
     }),
   ).isRequired,
