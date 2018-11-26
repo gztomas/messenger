@@ -5,7 +5,7 @@ const recipients = {};
 const getRecipient = id => {
   if (!recipients[id]) {
     // The replay subject will keep the message history,
-    // previous values that will be emitted to new subscriptions.
+    // previous values will be emitted to new subscriptions.
     recipients[id] = new ReplaySubject();
   }
   return recipients[id];

@@ -51,3 +51,11 @@ yarn dev
 ### Tests
 
 Tests are missing for the most cases, but you can check the [contact info component](https://github.com/gztomas/messenger/tree/master/src/components/contact-info) for an example of a tested component.
+
+They are being triggered by the CI build.
+
+For running them locally just do
+
+```sh
+yarn test
+```
