@@ -1,7 +1,12 @@
 import { connect } from 'react-redux';
 import ContactInfo from './contact-info';
 
-const mapStateToProps = ({ contacts, channels, activeChannelId, me }) => {
+export const mapStateToProps = ({
+  contacts,
+  channels,
+  activeChannelId,
+  me,
+}) => {
   const activeChannel = channels[activeChannelId];
   const contactId = activeChannel.members.find(id => id !== me.id);
   const { picture, name, status } = contacts[contactId];

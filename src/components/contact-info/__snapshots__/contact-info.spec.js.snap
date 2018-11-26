@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactInfo should render properly 1`] = `
+<styled__StyledContainer>
+  <Avatar
+    prefixCls="ant-avatar"
+    shape="circle"
+    size="large"
+    src="http://cdn.com/picture.jpg"
+  />
+  <styled__StyledDetails>
+    <h4>
+      Victor
+    </h4>
+    <span>
+      online
+    </span>
+  </styled__StyledDetails>
+</styled__StyledContainer>
+`;
