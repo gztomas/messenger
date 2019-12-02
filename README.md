@@ -8,11 +8,6 @@ This is a POC for simple messenger font-end app.
 
 It uses React, Redux, Next.JS and Ant Design.
 
-Circle CI does the CD to Github Pages. Check it out! https://gztomas.github.io/messenger
-
-For demo purposes, you will see a split screen app.
-You can check how it would look for a real use case at https://gztomas.github.io/messenger/standalone
-
 ## Install
 
 You will need Yarn. If you are using macOS and have home-brew installed, then you can get it by doing
@@ -38,7 +33,8 @@ yarn build
 yarn start
 ```
 
-Then just open your browser at http://localhost:3000
+Then just open your browser at <http://localhost:3000>
+For demo purposes, you will see a split screen app.
 
 ## Development
 
