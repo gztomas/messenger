@@ -9,10 +9,7 @@ const mapDispatchToProps = {
 };
 
 export default compose(
-  connect(
-    null,
-    mapDispatchToProps,
-  ),
+  connect(null, mapDispatchToProps),
   lifecycle({
     componentDidMount() {
       this.props.listenForMessages();

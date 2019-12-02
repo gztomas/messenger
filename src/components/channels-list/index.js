@@ -30,7 +30,4 @@ const mapDispatchToProps = {
   onSetActiveChannel: setActiveChannel,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ChannelsList);
+export default connect(mapStateToProps, mapDispatchToProps)(ChannelsList);

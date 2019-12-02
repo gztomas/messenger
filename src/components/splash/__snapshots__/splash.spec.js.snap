@@ -3,7 +3,7 @@
 exports[`Splash should render properly 1`] = `
 <splash__Container>
   <Card
-    cover={<ForwardRef />}
+    cover={<ForwardRef(splash__StyledLogo) />}
     hoverable={true}
     style={
       Object {
@@ -11,7 +11,7 @@ exports[`Splash should render properly 1`] = `
       }
     }
   >
-    <Component
+    <Meta
       description="This is just the boilerplate"
       title="Messenger App"
     />

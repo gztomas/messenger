@@ -1,4 +1,4 @@
 module.exports = {
-  setupTestFrameworkScriptFile: 'jest-enzyme',
+  setupFilesAfterEnv: ['jest-enzyme'],
   testEnvironment: 'enzyme',
 };

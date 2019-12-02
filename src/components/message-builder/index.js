@@ -8,7 +8,4 @@ const mapDispatchToProps = {
   onEndTyping: endTyping,
 };
 
-export default connect(
-  null,
-  mapDispatchToProps,
-)(MessageBuilder);
+export default connect(null, mapDispatchToProps)(MessageBuilder);

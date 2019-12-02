@@ -3,7 +3,6 @@
 exports[`ContactInfo should render properly 1`] = `
 <styled__StyledContainer>
   <Avatar
-    prefixCls="ant-avatar"
     shape="circle"
     size="large"
     src="http://cdn.com/picture.jpg"

@@ -44,6 +44,7 @@ export default App =>
 
     constructor(props) {
       super(props);
+      // eslint-disable-next-line react/prop-types
       this.reduxStore = getOrCreateStore(props.initialReduxState);
     }
 

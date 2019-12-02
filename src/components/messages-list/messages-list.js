@@ -24,7 +24,7 @@ const MessagesList = ({ messages, isTyping, myself }) => {
           dataSource={allMessages}
           split={false}
           locale={{
-            emptyText: '',
+            emptyText: <></>,
           }}
           renderItem={message => (
             <List.Item>
