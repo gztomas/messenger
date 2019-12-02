@@ -1,6 +1,6 @@
 # Messenger
 
-[![CircleCI](https://circleci.com/gh/gztomas/messenger.svg?style=svg)](https://circleci.com/gh/gztomas/messenger)
+[![CircleCI](https://circleci.com/gh/gztomas/messenger.svg?style=svg&circle-token=53adf011fb6eaa26ca2182408630f436ccda8715)](https://circleci.com/gh/gztomas/messenger)
 
 This is a POC for simple messenger font-end app.
 
