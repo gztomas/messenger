@@ -49,5 +49,6 @@
     "jest-environment-enzyme": "^7.0.1",
     "jest-enzyme": "^7.0.1",
     "prettier": "^1.15.2"
-  }
+  },
+  "resolutions": { "**/**/js-yaml": "^3.13.1" }
 }
