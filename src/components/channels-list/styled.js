@@ -18,6 +18,7 @@ export const StyledDetails = styled.div`
   flex-direction: column;
   margin-left: 10px;
   overflow: hidden;
+  margin-right: auto;
 `;
 
 export const StyledListItem = styled(({ isActive, children, ...rest }) => (
@@ -26,7 +27,7 @@ export const StyledListItem = styled(({ isActive, children, ...rest }) => (
   cursor: pointer;
   padding: 15px 10px;
   border-left: 3px solid transparent;
-  ${props => (props.isActive ? 'border-left-color: #3485f7;' : '')}
+  ${(props) => (props.isActive ? 'border-left-color: #3485f7;' : '')}
 
   .ant-list-item-content {
     overflow: hidden;

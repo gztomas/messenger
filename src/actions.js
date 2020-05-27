@@ -6,14 +6,16 @@ import * as usersService from './server-mock/users';
 
 // Actions
 
-export const addMessage = createAction('ADD_MESSAGE', message => ({ message }));
+export const addMessage = createAction('ADD_MESSAGE', (message) => ({
+  message,
+}));
 
 export const setActiveChannel = createAction(
   'SET_ACTIVE_CHANNEL',
-  channelId => ({ channelId }),
+  (channelId) => ({ channelId }),
 );
 
-export const channelUpdate = createAction('CHANNEL_UPDATE', channel => ({
+export const channelUpdate = createAction('CHANNEL_UPDATE', (channel) => ({
   channel,
 }));
 
@@ -25,7 +27,7 @@ export const channelUpdate = createAction('CHANNEL_UPDATE', channel => ({
  */
 export const listenForMessages = () => (dispatch, getState) => {
   const { channels } = getState().me;
-  messagesService.listen(channels, message => dispatch(addMessage(message)));
+  messagesService.listen(channels, (message) => dispatch(addMessage(message)));
 };
 
 /**
@@ -34,7 +36,9 @@ export const listenForMessages = () => (dispatch, getState) => {
  */
 export const listenForChannels = () => (dispatch, getState) => {
   const { channels } = getState().me;
-  channelsService.listen(channels, channel => dispatch(channelUpdate(channel)));
+  channelsService.listen(channels, (channel) =>
+    dispatch(channelUpdate(channel)),
+  );
 };
 
 /**
@@ -57,7 +61,7 @@ export const endTyping = () => (dispatch, getState) => {
   const { activeChannelId, channels, me } = getState();
   channelsService.update({
     id: activeChannelId,
-    typing: channels[activeChannelId].typing.filter(id => id !== me.id),
+    typing: channels[activeChannelId].typing.filter((id) => id !== me.id),
   });
 };
 
@@ -66,7 +70,7 @@ export const endTyping = () => (dispatch, getState) => {
  * to the active channel
  * @param {string} body
  */
-export const sendMessage = body => (dispatch, getState) => {
+export const sendMessage = (body) => (dispatch, getState) => {
   const { me, activeChannelId } = getState();
 
   const message = {
@@ -78,7 +82,7 @@ export const sendMessage = body => (dispatch, getState) => {
   messagesService.send(message);
 };
 
-export const fetchInitialState = userId => {
+export const fetchInitialState = (userId) => {
   const me = usersService.get(userId);
   const { contacts, channels } = me;
   return {

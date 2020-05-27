@@ -11,18 +11,18 @@ const initialState = fetchInitialState('laura-id');
 const reducer = handleActions(
   {
     ADD_MESSAGE: (state, { payload: { message } }) =>
-      produce(state, draft => {
+      produce(state, (draft) => {
         if (!(message.to in draft.messages)) {
           draft.messages[message.to] = [];
         }
         draft.messages[message.to].push(message);
       }),
     SET_ACTIVE_CHANNEL: (state, { payload: { channelId } }) =>
-      produce(state, draft => {
+      produce(state, (draft) => {
         draft.activeChannelId = channelId;
       }),
     CHANNEL_UPDATE: (state, { payload: { channel } }) =>
-      produce(state, draft => {
+      produce(state, (draft) => {
         Object.assign(draft.channels[channel.id], channel);
       }),
   },

@@ -3,7 +3,7 @@
 exports[`Splash should render properly 1`] = `
 <splash__Container>
   <Card
-    cover={<ForwardRef(splash__StyledLogo) />}
+    cover={<splash__StyledLogo />}
     hoverable={true}
     style={
       Object {

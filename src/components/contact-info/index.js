@@ -8,9 +8,9 @@ export const mapStateToProps = ({
   me,
 }) => {
   const activeChannel = channels[activeChannelId];
-  const contactId = activeChannel.members.find(id => id !== me.id);
+  const contactId = activeChannel.members.find((id) => id !== me.id);
   const { picture, name, status } = contacts[contactId];
-  const isTyping = activeChannel.typing.some(id => id === contactId);
+  const isTyping = activeChannel.typing.some((id) => id === contactId);
 
   return {
     picture,

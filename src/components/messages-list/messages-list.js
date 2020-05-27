@@ -26,7 +26,7 @@ const MessagesList = ({ messages, isTyping, myself }) => {
           locale={{
             emptyText: <></>,
           }}
-          renderItem={message => (
+          renderItem={(message) => (
             <List.Item>
               {message.from === myself ? (
                 <OwnMessage>

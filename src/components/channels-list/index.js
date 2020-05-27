@@ -13,7 +13,7 @@ const mapStateToProps = ({
 }) => ({
   channels: map(channels, (channel, channelId) => {
     const contact =
-      contacts[channel.members.find(contactId => contactId !== me.id)];
+      contacts[channel.members.find((contactId) => contactId !== me.id)];
     const result = {
       ...contact,
       ...channel,

@@ -1,9 +1,7 @@
-// @ts-nocheck
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Head from '../components/head';
-import 'antd/dist/antd.css';
 
 const FullHeight = styled.div`
   display: flex;
