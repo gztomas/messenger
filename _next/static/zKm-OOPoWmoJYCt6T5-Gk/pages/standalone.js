@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[15],{"l2F+":function(n,t,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/standalone",function(){return u("ynSL")}])},ynSL:function(n,t,u){"use strict";u.r(t);var w=u("mXGw"),e=u.n(w),o=u("wOhW"),a=u("2KJv"),i=e.a.createElement;t.default=function(){return i(o.a,null,i(a.a,null))}}},[["l2F+",0,1,4,2,3,5]]]);
