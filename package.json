@@ -6,9 +6,8 @@
   "scripts": {
     "dev": "next src",
     "build": "next build src",
-    "build:pages": "PAGES=true next build src",
     "start": "next start src",
-    "export": "next export src -o out",
+    "export": "PAGES=true next export src -o out",
     "lint": "eslint src",
     "test": "jest src"
   },
