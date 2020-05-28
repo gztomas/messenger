@@ -2,11 +2,10 @@ version: 2
 jobs:
   build:
     branches:
-      ignore:
-        - gh-pages
+      ignore: gh-pages
 
     docker:
-      - image: circleci/node:8.11.4
+      - image: circleci/node:12
 
     working_directory: ~/repo
 
@@ -15,22 +14,22 @@ jobs:
 
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      - run: yarn
+      - run: npm ci
 
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
 
-      - run: yarn lint
+      - run: npm run lint
 
-      - run: yarn test
+      - run: npm test
 
-      - run: yarn build
+      - run: npm run build
 
       - deploy:
           name: Deploy
@@ -45,7 +44,7 @@ jobs:
               git rm -rf .
               cd ..
 
-              yarn export
+              npm run export
 
               cp -a out/. deploy/.
 
