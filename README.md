@@ -1,12 +1,12 @@
-# Messenger
-
-[![CircleCI](https://circleci.com/gh/gztomas/messenger.svg?style=shield&circle-token=53adf011fb6eaa26ca2182408630f436ccda8715)](https://circleci.com/gh/gztomas/messenger)
+# Messenger &middot; [![CircleCI](https://circleci.com/gh/gztomas/messenger.svg?style=shield&circle-token=53adf011fb6eaa26ca2182408630f436ccda8715)](https://circleci.com/gh/gztomas/messenger)
 
 This is a POC for simple messenger font-end app.
 
 ![Demo Animation](demo.gif)
 
-It uses React, Redux, Next.JS and Ant Design.
+Implemented with React, Redux, Next.JS and Ant Design.
+
+Visit the [demo page](https://gztomas.github.io/messenger) to see it working.
 
 ## Install
 
